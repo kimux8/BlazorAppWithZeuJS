@@ -1,0 +1,306 @@
+﻿@page "/"
+
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Index</PageTitle>
+
+<div class="container-fluid pt-4 pb-4" id="page">
+  <div class="container">
+    <div class="row">
+        <div class="col-2">
+            <button class="btn btn-primary" @onclick="OnClick">Click</button>
+        </div>
+        
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-lg-8">
+            <h1>MY COMMAND CENTER</h1>
+            <div><a href="https://github.com/shzlw/zeu" style="font-size: 18px;">by Zeu.js</a></div>
+            <div style="font-size: 22px; font-weight: bold;">US-EAST-01</div>
+          </div>
+          <div class="col-lg-4">
+            <h2>TIME</h2>
+            <canvas id="digital-clock" width="200" height="50"></canvas>
+          </div>
+        </div>
+        
+        <canvas id="heartbeat" width="730" height="150"></canvas>
+      </div>
+      <div class="col-lg-4 border-left-white">
+        <h2>VOLUME</h2>
+        <div class="row no-gutters">
+          <div class="col-2">
+            <canvas id="bar-meter-1" width="65" height="200"></canvas>
+          </div>
+          <div class="col-2">
+            <canvas id="bar-meter-2" width="65" height="200"></canvas>
+          </div>
+          <div class="col-2">
+            <canvas id="bar-meter-3" width="65" height="200"></canvas>
+          </div>
+          <div class="col-2">
+            <canvas id="bar-meter-4" width="65" height="200"></canvas>
+          </div>
+          <div class="col-2">
+            <canvas id="bar-meter-5" width="65" height="200"></canvas>
+          </div>
+          <div class="col-2">
+            <canvas id="bar-meter-6" width="65" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+
+        <div class="row no-gutters">
+          <div class="col">
+            <h2>TEMPERATURE</h2>
+            <div class="row no-gutters text-center">
+              <div class="col-3">
+                <div class="temp-title">E1</div>
+                <canvas id="volume-meter-1" width="80" height="150"></canvas>
+              </div>
+              <div class="col-3">
+                <div class="temp-title">E2</div>
+                <canvas id="volume-meter-2" width="80" height="150"></canvas>
+              </div>
+              <div class="col-3">
+                <div class="temp-title">E3</div>
+                <canvas id="volume-meter-3" width="80" height="150"></canvas>
+              </div>
+              <div class="col-3">
+                <div class="temp-title">E4</div>
+                <canvas id="volume-meter-4" width="80" height="150"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="mt-2">COOLING</h2>
+        <div class="row no-gutters text-center">
+          <div class="col-3">
+            <canvas id="round-fan-1" width="80" height="80"></canvas>
+            <div><span id="fan-rpm-1" class="fan-rpm">0</span> RPM</div>
+          </div>
+          <div class="col-3">
+            <canvas id="round-fan-2" width="80" height="80"></canvas>
+            <div><span id="fan-rpm-2" class="fan-rpm">0</span> RPM</div>
+          </div>
+          <div class="col-3">
+            <canvas id="round-fan-3" width="80" height="80"></canvas>
+            <div><span id="fan-rpm-3" class="fan-rpm">0</span> RPM</div>
+          </div>
+          <div class="col-3">
+            <canvas id="round-fan-4" width="80" height="80"></canvas>
+            <div><span id="fan-rpm-4" class="fan-rpm">0</span> RPM</div>
+          </div>
+        </div>
+
+        <div class="row no-gutters text-center">
+          <div class="col-3">
+            <canvas id="round-fan-5" width="80" height="80"></canvas>
+            <div><span id="fan-rpm-5" class="fan-rpm">0</span> RPM</div>
+          </div>
+          <div class="col-3">
+            <canvas id="round-fan-6" width="80" height="80"></canvas>
+            <div><span id="fan-rpm-6" class="fan-rpm">0</span> RPM</div>
+          </div>
+          <div class="col-3">
+            <canvas id="round-fan-7" width="80" height="80"></canvas>
+            <div><span id="fan-rpm-7" class="fan-rpm">0</span> RPM</div>
+          </div>
+          <div class="col-3">
+            <canvas id="round-fan-8" width="80" height="80"></canvas>
+            <div><span id="fan-rpm-8" class="fan-rpm">0</span> RPM</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-4 border-top-white border-left-white">
+        <h2>CLUSTER</h2>
+        <div class="row no-gutters">
+          <div class="col">
+
+            <div class="row no-gutters text-center">
+              <div class="col-6">
+                <div class="sc-title">R-001</div>
+                <canvas id="speed-circle-1" width="170" height="170"></canvas>
+              </div>
+              <div class="col-6">
+                <div class="sc-title">R-002</div>
+                <canvas id="speed-circle-2" width="170" height="170"></canvas>
+              </div>
+            </div>
+
+            <div class="row no-gutters text-center">
+              <div class="col-6">
+                <div class="sc-title">S-001</div>
+                <canvas id="speed-circle-3" width="170" height="170"></canvas>
+              </div>
+              <div class="col-6">
+                <div class="sc-title">S-002</div>
+                <canvas id="speed-circle-4" width="170" height="170"></canvas>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+      </div>
+      <div class="col-lg-4">
+
+        <div class="row no-gutters">
+          <div class="col">
+            <h2>CAPACITY</h2>
+            <div class="row no-gutters text-center">
+              <div class="col-lg-3 pt-4 capacity-title">D-001</div>
+              <div class="col-lg-9">
+                <canvas id="text-meter-1" width="240" height="60"></canvas>
+              </div>
+            </div>
+
+            <div class="row no-gutters text-center">
+              <div class="col-lg-3 pt-4 capacity-title">D-002</div>
+              <div class="col-lg-9">
+                <canvas id="text-meter-2" width="240" height="60"></canvas>
+              </div>
+            </div>
+
+            <h2 class="mt-2">JOB QUEUE</h2>
+            <div class="row no-gutters text-center">
+              <div class="col-3">
+                <h5>Q-1</h5>
+                <canvas id="text-box-1" width="80" height="40"></canvas>
+                <canvas id="message-queue-1" width="80" height="200"></canvas>
+              </div>
+              <div class="col-3">
+                <h5>Q-2</h5>
+                <canvas id="text-box-2" width="80" height="40"></canvas>
+                <canvas id="message-queue-2" width="80" height="200"></canvas>
+              </div>
+              <div class="col-3">
+                <h5>Q-3</h5>
+                <canvas id="text-box-3" width="80" height="40"></canvas>
+                <canvas id="message-queue-3" width="80" height="200"></canvas>
+              </div>
+              <div class="col-3">
+                <h5>Q-4</h5>
+                <canvas id="text-box-4" width="80" height="40"></canvas>
+                <canvas id="message-queue-4" width="80" height="200"></canvas>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+@code{
+    protected override  void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            JSRuntime.InvokeVoidAsync("Init", new object[] { });
+        }
+    }
+
+    void  OnClick()
+    {
+
+        //JSRuntime.InvokeAsync<bool>("ValueChange", new object[] { });
+
+        var r = new Random();
+        var ret = @"#" + System.Drawing.Color.FromArgb(r.Next(256), r.Next(256), r.Next(256)).Name.Substring(2);
+
+        // Heartbeat
+        JSRuntime.InvokeVoidAsync("valueChangeHertbeat", new object[] {ret,r.Next(0,10) });
+
+        // BarMeters
+        for(int i=0;i<6;i++)
+        {
+            ret = @"#" + System.Drawing.Color.FromArgb(r.Next(256), r.Next(256), r.Next(256)).Name.Substring(2);
+            JSRuntime.InvokeVoidAsync("valueChangeBarMeters", new object[] {i,r.Next(50,100), ret});
+        }
+
+        // VolumeMeter
+        for(int i=0;i<4;i++)
+        {
+            JSRuntime.InvokeVoidAsync("valueChangeVolumeMeter", new object[] {i,r.Next(0,100)});
+        }
+
+        // RoundFans
+        for(int i=0;i<8;i++)
+        {
+            var speed = r.Next(2, 7);
+            var c = "";
+
+            if(speed<=2)
+            {
+                c = System.Drawing.Color.FromArgb(System.Drawing.Color.Green.ToArgb()).Name.Substring(2);
+            }
+            else if(speed<=5)
+            {
+                c=System.Drawing.Color.FromArgb(System.Drawing.Color.Blue.ToArgb()).Name.Substring(2);
+            }
+            else
+            {
+                c=System.Drawing.Color.FromArgb(System.Drawing.Color.Orange.ToArgb()).Name.Substring(2);
+            }
+
+            JSRuntime.InvokeVoidAsync("valueChangeRoundFans", new object[] {i,speed,@"#"+c});
+        }
+
+        // MessageQueues
+        for(int i=0;i<4;i++)
+        {
+            var n = r.Next(0, 2);
+            var val = r.Next(2, 7);
+            var s = r.Next(4, 10);
+
+            var c = "";
+
+            if(val<=2)
+            {
+                c = System.Drawing.Color.FromArgb(System.Drawing.Color.Green.ToArgb()).Name.Substring(2);
+            }
+            else if(val<=5)
+            {
+                c=System.Drawing.Color.FromArgb(System.Drawing.Color.Blue.ToArgb()).Name.Substring(2);
+            }
+            else
+            {
+                c=System.Drawing.Color.FromArgb(System.Drawing.Color.Orange.ToArgb()).Name.Substring(2);
+            }
+
+            JSRuntime.InvokeVoidAsync("valueChangeMessageQueues", new object[] {i,n,@"#"+c,s});
+        }
+
+        // SpeedCircles
+        for(int i=0;i<4;i++)
+        {
+            var val1 = r.Next(-10, 3);
+            var val2 = r.Next(-10, 3);
+            var val3 = r.Next(-10, 3);
+            var val4 = r.Next(-10, 3);
+
+
+            JSRuntime.InvokeVoidAsync("valueChangeSpeedCircles", new object[] {i,val1,val2,val3,val4});
+        }
+
+        // Call updateTextMeters
+        JSRuntime.InvokeVoidAsync("valueChangeTextMeters", new object[] {});
+
+    }
+
+}
